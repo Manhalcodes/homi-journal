@@ -1,21 +1,86 @@
 # Homi — Your Gentle Journaling Companion
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=YOUR_REPO_URL&env=YOUR_ENV_VARS)
+
 Homi is a calm, privacy-minded journaling web app. You write freely; Homi replies with warm, empathetic reflections and a few gentle questions to help you go deeper.
 
-- Frontend: React + Tailwind (Landing, Auth, Journal, Dashboard)
-- Auth: Firebase Authentication (Email/Password + Google)
-- AI: Mistral via OpenRouter (server-side)
-- Data: MongoDB Atlas
-- Backend: Vercel Serverless Functions (`/api/*`) with optional Upstash Redis rate limits
+## 🚀 Features
 
-## Demo Flow
-1) Visitor sees a welcoming Landing page with a soft gradient and clear CTA.
-2) Click “Enter Your Safe Space” → Auth page (signup or login).
-3) Journal page offers a textarea and an “AI button” (Get Supportive Feedback).
-4) Homi responds with empathy + 2–3 reflective questions. Entries are saved.
-5) Dashboard lists recent entries with edit/delete.
+- **Modern Stack**: Built with React 18, Vite, and Tailwind CSS
+- **AI-Powered**: Integrated with Mistral AI via OpenRouter for thoughtful responses
+- **Secure Authentication**: Firebase Authentication with Email/Password and Google Sign-In
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Serverless Backend**: Deployed on Vercel Serverless Functions
+- **Database**: MongoDB Atlas for secure data storage
 
-## Repository Structure
+## ✨ User Journey
+
+1. **Landing Page**
+   - Welcoming interface with clear call-to-action
+   - Soft gradient background and intuitive design
+
+2. **Authentication**
+   - Secure signup/login with Email/Password or Google
+   - Smooth transition to journal interface
+
+3. **Journal Interface**
+   - Clean, distraction-free writing space
+   - AI assistance button for supportive feedback
+
+4. **AI Responses**
+   - Empathetic and thoughtful reflections
+   - 2-3 reflective questions to encourage deeper thinking
+
+5. **Dashboard**
+   - Timeline of journal entries
+   - Easy edit/delete functionality
+   - Visual progress tracking
+
+## 🏗️ Project Structure
+
+```
+HOMI-A-journal-friend/
+├── Public/               # Static assets (images, icons, etc.)
+│   └── index.html        # Main HTML entry point
+│
+├── src/                  # Frontend source code
+│   ├── components/       # Reusable React components
+│   │   ├── AuthPage.jsx  # Authentication UI
+│   │   ├── JournalPage.jsx # Main journal interface
+│   │   ├── DashboardPage.jsx # User entries overview
+│   │   └── ...
+│   ├── firebase.js      # Firebase configuration
+│   └── App.jsx          # Main application component
+│
+├── api/                 # Serverless API routes (Vercel)
+│   ├── ai-journal.js    # AI response generation
+│   └── journal-entries/ # Entry management endpoints
+│
+├── server/              # Backend server (for Render deployment)
+│   ├── index.js         # Express server setup
+│   └── package.json     # Backend dependencies
+│
+├── .gitignore          # Git ignore rules
+├── package.json        # Frontend dependencies and scripts
+├── tailwind.config.js  # Tailwind CSS theming
+└── vite.config.js      # Vite build configuration
+```
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 18** - UI Library
+- **Vite** - Build tool and dev server
+- **Tailwind CSS** - Styling
+- **React Router** - Client-side routing
+- **Firebase** - Authentication
+
+### Backend (Serverless)
+- **Vercel Serverless Functions** - API endpoints
+- **MongoDB Atlas** - Database
+- **OpenRouter** - AI integration
+- **Firebase Admin** - Authentication verification
 
 frontend (React)
 - `Src/App.jsx` — App shell: Landing → Auth → Journal/Dashboard. Shows streak + Write button.
@@ -69,7 +134,58 @@ Rate Limiting (optional)
 Dev-only (optional)
 - `VITE_API_BASE_URL` — Only set for local dev to hit a remote backend. Leave unset on Vercel.
 
-## Local Development
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 16+ and npm
+- MongoDB Atlas account
+- Firebase project
+- OpenRouter API key
+
+### Local Development
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/homi-journal.git
+   cd homi-journal
+   ```
+
+2. **Install dependencies**
+   ```bash
+   # Install frontend dependencies
+   npm install
+   
+   # Install backend dependencies
+   cd server
+   npm install
+   cd ..
+   ```
+
+3. **Set up environment variables**
+   Create a `.env` file in the root directory with the required variables:
+   ```env
+   # Firebase (Client)
+   VITE_FIREBASE_API_KEY=your_api_key
+   VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+   VITE_FIREBASE_PROJECT_ID=your_project_id
+   VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+   VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+   VITE_FIREBASE_APP_ID=your_app_id
+   
+   # For local development
+   VITE_API_BASE_URL=http://localhost:3000
+   ```
+
+4. **Start the development servers**
+   ```bash
+   # Start frontend
+   npm run dev
+   
+   # In a new terminal, start the backend
+   npm run server
+   ```
+
+   The app should now be running at `http://localhost:5173`
 1) Install dependencies:
    - Frontend: `npm install`
    - (Optional) Vercel CLI: `npm i -g vercel`
@@ -80,14 +196,108 @@ Dev-only (optional)
 4) Run frontend: `npm run dev`
 5) Open the local URL shown by Vite; the frontend will call `/api/*` via the Vercel dev server.
 
-## Deployment (Vercel)
+## 🚀 Deployment
+
+### Frontend (Vercel)
+1. Push your code to a GitHub repository
+2. Import the project into Vercel
+3. Configure environment variables in Vercel dashboard
+4. Deploy your application
+
+### Backend (Render)
+1. Push your code to GitHub
+2. Create a new Web Service on Render
+3. Connect your GitHub repository
+4. Configure build and start commands:
+   - Build: `cd server && npm install`
+   - Start: `npm start`
+5. Add all required environment variables
+6. Deploy
+
+### Environment Variables
+Make sure to set these in your deployment platform:
+
+**Frontend (Vercel)**
+- `VITE_FIREBASE_*` - Firebase configuration
+- `VITE_API_BASE_URL` - Your Render backend URL (e.g., `https://your-backend.onrender.com`)
+
+**Backend (Render)**
+- `MONGODB_URI` - MongoDB connection string
+- `OPENROUTER_API_KEY` - Your OpenRouter API key
+- `FIREBASE_*` - Firebase Admin credentials
 1) Push repo to GitHub.
 2) Import project into Vercel. Select React/Vite framework preset if prompted.
 3) Add all environment variables in Vercel (see above).
 4) Deploy.
 5) In Firebase Auth → Settings → Authorized domains, add `your-app.vercel.app`.
 
-## API Reference (Serverless)
+## 📚 API Reference
+
+### Authentication
+All API endpoints (except public routes) require a valid Firebase ID token in the `Authorization` header:
+```
+Authorization: Bearer <firebase_id_token>
+```
+
+### Endpoints
+
+#### POST `/api/ai-journal`
+Generate AI reflection for a journal entry
+
+**Request**
+```json
+{
+  "entry": "Your journal entry text here",
+  "tone": "supportive" // Optional
+}
+```
+
+**Response**
+```json
+{
+  "content": "AI response here...",
+  "questions": ["Question 1", "Question 2"]
+}
+```
+
+#### GET `/api/journal-entries`
+Get paginated list of journal entries
+
+**Query Parameters**
+- `limit`: Number of entries to return (default: 20)
+- `page`: Page number (default: 1)
+
+**Response**
+```json
+{
+  "entries": [
+    {
+      "id": "entry_id",
+      "userId": "user_id",
+      "entry": "Entry content",
+      "ai": {
+        "content": "AI response",
+        "questions": ["Question 1", "Question 2"]
+      },
+      "createdAt": "ISO_DATE"
+    }
+  ],
+  "total": 42
+}
+```
+
+#### PATCH `/api/journal-entries/:id`
+Update a journal entry
+
+**Request**
+```json
+{
+  "entry": "Updated entry content"
+}
+```
+
+#### DELETE `/api/journal-entries/:id`
+Delete a journal entry
 
 POST `/api/ai-journal`
 - Auth: Firebase ID token (Authorization: Bearer <token>)
