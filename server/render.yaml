@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: homi-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: ~18.0.0
+      - key: PORT
+        value: 10000
+      # Add other environment variables from your .env file here
+      # Example:
+      # - key: MONGO_URI
+      #   value: your-mongodb-uri
+      # - key: FIREBASE_CREDENTIALS
+      #   value: your-firebase-credentials
