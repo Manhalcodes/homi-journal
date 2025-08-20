@@ -7,12 +7,7 @@ export default defineConfig({
   publicDir: 'Public',
   build: {
     outDir: 'dist',
-    emptyOutDir: true,
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'Public/index.html')
-      }
-    }
+    emptyOutDir: true
   },
   server: {
     port: 3000,
